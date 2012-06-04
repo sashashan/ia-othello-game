@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title">Othello</string>
+    <string name="app_name">Othello</string>
+    <string name="play">Play</string>
+    <string name="exit">Exit</string>
+    <string name="instruction">Instruction</string>
+    <string name="playerDarkText">Nero</string>
+    <string name="playerLightText">Bianco</string>
+
+</resources>

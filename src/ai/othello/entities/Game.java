@@ -44,7 +44,7 @@ public class Game implements GameI {
 	@Override
 	public void run() {
 		initialize();
-		//play();
+		play();
 	}
 
 	@Override

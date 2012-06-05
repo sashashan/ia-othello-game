@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayoutContent"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
     android:cacheColorHint="@android:color/transparent"
     android:horizontalSpacing="0px"
     android:listSelector="@android:color/transparent"
@@ -13,57 +14,99 @@
         android:id="@+id/gridview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
+        android:background="@color/black"
         android:gravity="left"
         android:horizontalSpacing="2dp"
         android:listSelector="@android:color/transparent"
         android:numColumns="auto_fit"
+        android:paddingLeft="2dp"
+        android:paddingBottom="2dp"
+        android:paddingRight="2dp"
         android:stretchMode="none"
         android:verticalSpacing="2dp" >
     </GridView>
 
     <LinearLayout
+        android:id="@+id/layoutRight"
         android:layout_width="wrap_content"
+        android:layout_marginBottom="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="200dp"
-        android:gravity="top"
+        android:layout_alignParentTop="true"
+        android:background="@color/grey"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/playerDarkText"
+        <TableLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="@string/playerDarkText"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/playerDarkCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:text="00"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:layout_gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/playerLightText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="@string/playerLightText"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+                <ImageView
+                    android:id="@+id/imageDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:src="@drawable/dark" />
 
-        <TextView
-            android:id="@+id/playerLightCounter"
+                <ImageView
+                    android:id="@+id/imageLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:src="@drawable/light" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/playerDarkCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textView2"
+                    android:gravity="center_horizontal"
+                    android:text="00"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/playerLightCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textView2"
+                    android:gravity="center_horizontal"
+                    android:text="00"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bntExitGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:text="00"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_above="@+id/linearLayout1"
+            android:layout_alignParentRight="true"
+            android:text="@string/exitGame" />
     </LinearLayout>
 
 </RelativeLayout>

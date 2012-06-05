@@ -45,13 +45,13 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(height, width));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setBackgroundResource(R.drawable.sfondo);
+            imageView.setBackgroundResource(R.color.light_green);
         } else {
             imageView = (ImageView) convertView;
         }
 
     	if (getItem(position) != null) {
-    		imageView.setImageResource((getItem(position) == COLOR.LIGHT) ? R.drawable.cerchio_bianco : R.drawable.cerchio_nero);
+    		imageView.setImageResource((getItem(position) == COLOR.LIGHT) ? R.drawable.light : R.drawable.dark);
     	}
 
         return imageView;

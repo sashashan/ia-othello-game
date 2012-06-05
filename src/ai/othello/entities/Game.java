@@ -68,12 +68,15 @@ public class Game implements GameI {
 		gui.setPawn(boardDim/2, (boardDim/2)-1, COLOR.DARK);
 		board[boardDim/2][boardDim/2].setColor(COLOR.LIGHT);
 		gui.setPawn(boardDim/2, boardDim/2, COLOR.LIGHT);
+		gui.setCounter(darkDisksNum, lightDisksNum);
 	}
 	
 	@Override
 	public void play() {
 		MinimaxI minimax = new Minimax();
 		while (!endCondition()) {
+			
+			gui.setPlayerTurn(currentPlayer.getColor());
 			
 			if (currentPlayer.getColor() == COLOR.DARK) {
 				System.out.println("sta giocando il giocatore scuro ----  " + !endCondition());
@@ -115,6 +118,7 @@ public class Game implements GameI {
 		board[i][j].setColor(color);
 		if (draw) {
 			gui.setPawn(i, j, color);
+			gui.setCounter(darkDisksNum, lightDisksNum);
 		}
 		currentDisksNum++;
 		increment(color);
@@ -157,6 +161,7 @@ public class Game implements GameI {
 		board[i][j].switchColor();
 		if (draw) {
 			gui.setPawn(i, j, board[i][j].getColor());
+			gui.setCounter(darkDisksNum, lightDisksNum);
 		}
 		increment(board[i][j].getColor());
 	}

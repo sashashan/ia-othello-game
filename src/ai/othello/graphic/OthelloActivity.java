@@ -19,9 +19,20 @@ public class OthelloActivity extends Activity {
 			public void onClick(View v) {
 				Intent play = new Intent(OthelloActivity.this, PlayActivity.class);
 				startActivity(play);
+				finish();
 			}
 		});        
         
+		Button bntInst = (Button)findViewById(R.id.bntInstruction);
+		bntInst.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				Intent inst = new Intent(OthelloActivity.this, InstructionActivity.class);
+				startActivity(inst);
+				finish();
+			}
+		}); 
+		
         Button bntExit = (Button)findViewById(R.id.bntExit);
 		bntExit.setOnClickListener(new View.OnClickListener() {
 

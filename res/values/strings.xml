@@ -4,9 +4,10 @@
     <string name="title">Othello</string>
     <string name="app_name">Othello</string>
     <string name="play">Play</string>
-    <string name="exit">Exit</string>
+    <string name="exitApp">Exit</string>
     <string name="instruction">Instruction</string>
-    <string name="playerDarkText">Nero</string>
-    <string name="playerLightText">Bianco</string>
+    <string name="playerDarkText">Dark</string>
+    <string name="playerLightText">Light</string>
+    <string name="exitGame">Exit</string>
 
 </resources>

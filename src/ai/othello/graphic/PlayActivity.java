@@ -4,6 +4,7 @@ import ai.othello.entities.GameI;
 import ai.othello.entities.GameI.COLOR;
 import android.R.string;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,9 @@ import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,9 @@ public class PlayActivity extends Activity {
 	private TextView darkCounter;
 	private TextView lightCounter;
 	
+	private ImageView darkImg;
+	private ImageView lightImg;
+	
 	private GameI game = new Game(8,this);
 
 	/** */
@@ -31,9 +37,6 @@ public class PlayActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.table_game);
-
-		//		Intent value_grid = getIntent();
-		//		value_grid.getIntExtra("grid_dimension", 8);
 
 		// PRENDE DIMENSIONI DISPLAY PER ADATTARE IL CONTENUTO
 		Display display = getWindowManager().getDefaultDisplay();
@@ -49,28 +52,40 @@ public class PlayActivity extends Activity {
 		int boxSize = boardHeight / 8; // calcola il lato della casella della griglia
 		Log.d("LATO CASELLA", new Integer(boxSize).toString());
 
-		// Crea e setta la griglia
+		// CREA E SETTA LA GRIGLIA
 		GridView gridView = (GridView) findViewById(R.id.gridview);
 		gridView.setNumColumns(8);
 		gridView.setColumnWidth(boxSize);
 		
-		// Crea e associa ImageAdapter
+		// CREA E SETTA ImageAdapter ALLA GRIGLIA
 		imageAdp = new ImageAdapter(this, boxSize, boxSize);
 		gridView.setAdapter(imageAdp);
 		
-		darkCounter = (TextView) findViewById(R.id.playerDarkCounter);
-		lightCounter = (TextView) findViewById(R.id.playerLightCounter);
-				
-		gridView.setOnItemClickListener(new OnItemClickListener() {
+		// RIGHT LAYOUT
+		LinearLayout layoutRight = (LinearLayout) findViewById(R.id.layoutRight);
+		Log.d("dim altezza layout", Integer.toString(boardHeight));
+		layoutRight.setMinimumHeight(pnt.y);
+		Log.d("dim larghezza layout", Integer.toString(pnt.x-boardHeight));
+		layoutRight.setMinimumWidth((pnt.x-boardHeight)-32);
 
-			public void onItemClick(AdapterView<?> parent, View v, int position,
-					long id) {
-				Toast.makeText(PlayActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-				// INSERIRE CIO CHE DEVE FARE LA CASELLA CLICCATA				
-			}
-		});
+		darkCounter = (TextView) findViewById(R.id.playerDarkCounter); // dark Counter
+		lightCounter = (TextView) findViewById(R.id.playerLightCounter); // light Counter
 		
-		new Thread(game).start();
+		darkImg = (ImageView) findViewById(R.id.imageDark); // img player dark
+		lightImg = (ImageView) findViewById(R.id.imageLight); // img player light
+		
+		Button bntExitGame = (Button)findViewById(R.id.bntExitGame); // bottone exit partita
+		bntExitGame.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				Intent exit = new Intent(PlayActivity.this, OthelloActivity.class);
+				startActivity(exit);
+				finish();
+			}
+		});        
+		
+		// START GAME
+		new Thread(game).start(); // start del thread di gioco
 		
 	}
 	
@@ -79,15 +94,45 @@ public class PlayActivity extends Activity {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				imageAdp.setPawn(x*8+y, color);
 				
 			}
 		});
 	}
 	
-	public void setCounter(int darkC, int lightC ) {
-		darkCounter.setText(Integer.toString(darkC));
-		lightCounter.setText(Integer.toString(lightC));
+	public void setCounter(final int darkC, final int lightC ) { 
+		runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				Log.d("DARK", Integer.toString(darkC));
+				Log.d("LIGHT", Integer.toString(lightC));
+				darkCounter.setText(Integer.toString(darkC));
+				lightCounter.setText(Integer.toString(lightC));
+				
+			}
+		});
+		
+	}
+	
+	public void setPlayerTurn(final COLOR color) { 
+		runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				if(color.toString() == "DARK") {
+					Log.d("dark", color.toString());
+					darkImg.setBackgroundResource(R.color.red);
+					lightImg.setBackgroundResource(R.color.grey);
+				}
+				else {
+					Log.d("light", color.toString());
+					lightImg.setBackgroundResource(R.color.red);
+					darkImg.setBackgroundResource(R.color.grey);
+				}
+				
+			}
+		});
+		
 	}
 }

@@ -1,31 +1,34 @@
 package intelligence;
 
 import java.util.Vector;
+
 import ai.othello.entities.Game;
 import ai.othello.entities.GameI;
-import ai.othello.entities.GameI.COLOR;
 import ai.othello.entities.Move;
 import ai.othello.entities.MoveI;
+import ai.othello.entities.GameI.COLOR;
 
-public class Minimax implements MinimaxI {
+public class AlphaBeta implements AlphaBetaI {
 	
 	private int maxDepth = 4;
 	private EvaluatorI evaluator = new Evaluator();
-
+	
 	@Override
 	public MoveI getDecision(GameI game) {
 		MoveI finalMove = new Move(-1, -1);
-		Integer finalScore = new Integer(0);
+		Integer finalScore = new Integer(-1);
+		Integer alpha = new Integer(Integer.MIN_VALUE);
+		Integer beta = new Integer(Integer.MAX_VALUE);
 		if (game.getCurrentPlayer().getColor() == Game.COLOR.DARK) {
-			maxDecision(game, 0, finalScore, finalMove);
+			maxDecision(game, 0, finalScore, finalMove, alpha, beta);
 		}
 		else {
-			minDecision(game,0, finalScore, finalMove);
+			minDecision(game,0, finalScore, finalMove, alpha, beta);
 		}
 		return finalMove;
 	}
 	
-	private void maxDecision(GameI game, int depth, Integer finalScore, MoveI finalMove) {
+	private void maxDecision(GameI game, int depth, Integer finalScore, MoveI finalMove, Integer alpha, Integer beta) {
 		if (depth >= maxDepth) {
 			finalScore = evaluator.evaluate(game);
 		}
@@ -42,10 +45,16 @@ public class Minimax implements MinimaxI {
 					newGame.applyMove(legalMoves.get(i), false);
 					Integer score = new Integer(0);
 					MoveI move = new Move(-1, -1);
-					minDecision(newGame, depth + 1, score, move); 
+					minDecision(newGame, depth + 1, score, move, alpha, beta);
+					if (score >= beta) {
+						return;
+					}
 					if (score > maxScore) {
 						maxScore = score;
 						bestMove = i;
+					}
+					if (score > alpha) {
+						alpha = score;
 					}
 				}
 				finalScore = maxScore;
@@ -54,7 +63,7 @@ public class Minimax implements MinimaxI {
 		}
 	}
 	
-	private void minDecision(GameI game, int depth, Integer finalScore, MoveI finalMove) {
+	private void minDecision(GameI game, int depth, Integer finalScore, MoveI finalMove, Integer alpha, Integer beta) {
 		if (depth >= maxDepth) {
 			finalScore = evaluator.evaluate(game);
 		}
@@ -71,16 +80,23 @@ public class Minimax implements MinimaxI {
 					newGame.applyMove(legalMoves.get(i), false);
 					Integer score = new Integer(0);
 					MoveI move = new Move(-1, -1);
-					minDecision(newGame, depth + 1, score, move); 
+					minDecision(newGame, depth + 1, score, move, alpha, beta);
+					if (score <= alpha) {
+						return;
+					}
 					if (score < minScore) {
 						minScore = score;
 						bestMove = i;
 					}
+					if (score < beta) {
+						score = beta;
+					}
+					
 				}
 				finalScore = minScore;
 				finalMove.setMove(legalMoves.get(bestMove).getMoveI(), legalMoves.get(bestMove).getMoveJ());
 			}
 		}
 	}
-	
+
 }

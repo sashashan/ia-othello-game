@@ -1,5 +1,7 @@
 package ai.othello.entities;
 
+import intelligence.AlphaBeta;
+import intelligence.AlphaBetaI;
 import intelligence.Minimax;
 import intelligence.MinimaxI;
 
@@ -68,37 +70,29 @@ public class Game implements GameI {
 		gui.setPawn(boardDim/2, (boardDim/2)-1, COLOR.DARK);
 		board[boardDim/2][boardDim/2].setColor(COLOR.LIGHT);
 		gui.setPawn(boardDim/2, boardDim/2, COLOR.LIGHT);
+		
 		gui.setCounter(darkDisksNum, lightDisksNum);
+		gui.setPlayerTurn(currentPlayer.getColor());
 	}
 	
 	@Override
 	public void play() {
-		MinimaxI minimax = new Minimax();
+		//MinimaxI minimax = new Minimax();
+		AlphaBetaI ai = new AlphaBeta(); 
 		while (!endCondition()) {
-			
-			gui.setPlayerTurn(currentPlayer.getColor());
-			
-			if (currentPlayer.getColor() == COLOR.DARK) {
-				System.out.println("sta giocando il giocatore scuro ----  " + !endCondition());
-			}
-			else {
-				System.out.println("sta giocando il giocatore chiaro ----  " + !endCondition());
-			}
-			
-			
-			MoveI move = minimax.getDecision(this);
-			System.out.println("scelta mossa " + move.getMoveI() + " " + move.getMoveJ());
+			MoveI move = ai.getDecision(this);
 			if (move.getMoveI() != -1 && move.getMoveJ() != -1) { // se non passa
 				applyMove(move, true);
 			}
 			currentPlayer.switchColor();
+			gui.setPlayerTurn(currentPlayer.getColor());
+			
 //			try {
 //				Thread.sleep(1000);
 //			} catch (Exception e) {
 //				// TODO: handle exception
 //			}
 		}
-		System.out.println(!endCondition());
 	}
 	
 	@Override
@@ -116,12 +110,13 @@ public class Game implements GameI {
 		int j = move.getMoveJ();
 		COLOR color = currentPlayer.getColor();
 		board[i][j].setColor(color);
+		currentDisksNum++;
+		increment(color);
 		if (draw) {
 			gui.setPawn(i, j, color);
 			gui.setCounter(darkDisksNum, lightDisksNum);
 		}
-		currentDisksNum++;
-		increment(color);
+		
 		if (testSingleDirection(i, j, -1, -1, color)) {
 			switchSingleDirection(i, j, -1, -1, draw);
 		}
@@ -161,9 +156,11 @@ public class Game implements GameI {
 		board[i][j].switchColor();
 		if (draw) {
 			gui.setPawn(i, j, board[i][j].getColor());
-			gui.setCounter(darkDisksNum, lightDisksNum);
 		}
 		increment(board[i][j].getColor());
+		if (draw) {
+			gui.setCounter(darkDisksNum, lightDisksNum);
+		}
 	}
 	
 	@Override

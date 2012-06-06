@@ -2,7 +2,6 @@ package ai.othello.graphic;
 import ai.othello.entities.Game;
 import ai.othello.entities.GameI;
 import ai.othello.entities.GameI.COLOR;
-import android.R.string;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
@@ -10,14 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class PlayActivity extends Activity {

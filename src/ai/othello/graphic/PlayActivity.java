@@ -118,12 +118,12 @@ public class PlayActivity extends Activity {
 			public void run() {
 				if(color.toString() == "DARK") {
 					Log.d("dark", color.toString());
-					darkImg.setBackgroundResource(R.color.red);
+					darkImg.setBackgroundResource(R.color.yellow);
 					lightImg.setBackgroundResource(R.color.grey);
 				}
 				else {
 					Log.d("light", color.toString());
-					lightImg.setBackgroundResource(R.color.red);
+					lightImg.setBackgroundResource(R.color.yellow);
 					darkImg.setBackgroundResource(R.color.grey);
 				}
 				

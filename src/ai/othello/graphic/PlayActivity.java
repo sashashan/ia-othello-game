@@ -22,20 +22,27 @@ import android.widget.TextView;
 public class PlayActivity extends Activity {
 
 	private ImageAdapter imageAdp;
-	
+
 	private TextView darkCounter;
 	private TextView lightCounter;
-	
+
 	private ImageView darkImg;
 	private ImageView lightImg;
-	
-	private GameI game = new Game(8, false, 0, this);
+
+	private int gameType;
+
+	private GameI game = new Game(8, true, 0, this);
 
 	/** */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.table_game);
+
+		gameType = getIntent().getIntExtra("algorithm", 0);
+		
+		// gameType == 0 --> MinMax
+		// gameType == 1 --> AlphaBeta
 
 		// PRENDE DIMENSIONI DISPLAY PER ADATTARE IL CONTENUTO
 		Display display = getWindowManager().getDefaultDisplay();
@@ -55,11 +62,11 @@ public class PlayActivity extends Activity {
 		GridView gridView = (GridView) findViewById(R.id.gridview);
 		gridView.setNumColumns(8);
 		gridView.setColumnWidth(boxSize);
-		
+
 		// CREA E SETTA ImageAdapter ALLA GRIGLIA
 		imageAdp = new ImageAdapter(this, boxSize, boxSize);
 		gridView.setAdapter(imageAdp);
-		
+
 		// RIGHT LAYOUT
 		LinearLayout layoutRight = (LinearLayout) findViewById(R.id.layoutRight);
 		Log.d("dim altezza layout", Integer.toString(boardHeight));
@@ -69,14 +76,14 @@ public class PlayActivity extends Activity {
 
 		darkCounter = (TextView) findViewById(R.id.playerDarkCounter); // dark Counter
 		lightCounter = (TextView) findViewById(R.id.playerLightCounter); // light Counter
-		
+
 		darkImg = (ImageView) findViewById(R.id.imageDark); // img player dark
 		lightImg = (ImageView) findViewById(R.id.imageLight); // img player light
-		
+
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				
+
 				synchronized (game) {
 					int i = position / game.getBoardDim();
 					int j = position % game.getBoardDim();
@@ -85,7 +92,7 @@ public class PlayActivity extends Activity {
 				}
 			}
 		});
-		
+
 		Button bntExitGame = (Button)findViewById(R.id.bntExitGame); // bottone exit partita
 		bntExitGame.setOnClickListener(new View.OnClickListener() {
 
@@ -93,43 +100,50 @@ public class PlayActivity extends Activity {
 				Intent exit = new Intent(PlayActivity.this, OthelloActivity.class);
 				startActivity(exit);
 				finish();
+				android.os.Process.killProcess(android.os.Process.myPid());
 			}
 		});        
-		
+
 		// START GAME
 		new Thread(game).start(); // start del thread di gioco
-		
+		game.setMethod(gameType);
+
+		TextView algorithm = (TextView) findViewById(R.id.algorithmText);
+		if (game.getMethod()==0) {
+			algorithm.setText("Algoritmo MIN-MAX");
+		} else {
+			algorithm.setText("Algoritmo ALPHA-BETA");
+		}
 	}
-	
+
 	public void setPawn(final int x, final int y, final COLOR color) {
 		runOnUiThread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				imageAdp.setPawn(x*8+y, color);
-				
+
 			}
 		});
 	}
-	
+
 	public void setCounter(final int darkC, final int lightC ) { 
 		runOnUiThread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				Log.d("DARK", Integer.toString(darkC));
 				Log.d("LIGHT", Integer.toString(lightC));
 				darkCounter.setText(Integer.toString(darkC));
 				lightCounter.setText(Integer.toString(lightC));
-				
 			}
 		});
-		
+
 	}
-	
+
 	public void setPlayerTurn(final COLOR color) { 
 		runOnUiThread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				if(color.toString() == "DARK") {
@@ -142,11 +156,9 @@ public class PlayActivity extends Activity {
 					lightImg.setBackgroundResource(R.color.yellow);
 					darkImg.setBackgroundResource(R.color.grey);
 				}
-				
+
 			}
 		});
-		
+
 	}
-	
-	
 }

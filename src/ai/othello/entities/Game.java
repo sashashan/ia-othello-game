@@ -117,6 +117,7 @@ public class Game implements GameI {
 				// computer play
 				else {
 					MoveI move = ai.getDecision(this);
+					System.out.println("mossa: " + move.getMoveI() + " - " + move.getMoveJ());
 					applyMove(move, true);
 				}
 			}
@@ -340,5 +341,10 @@ public class Game implements GameI {
 	@Override
 	public int getMethod() {
 		return method;
+	}
+	
+	@Override
+	public void setMethod(int method) {
+		this.method = method;	
 	}
 }

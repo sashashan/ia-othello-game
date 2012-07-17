@@ -15,24 +15,23 @@ public class Minimax implements DecisionI {
 	@Override
 	public MoveI getDecision(GameI game) {
 		MoveI finalMove = new Move(-1, -1);
-		Integer finalScore = 0;
 		if (game.getCurrentPlayer().getColor() == Game.COLOR.DARK) {
-			maxDecision(game, 0, finalScore, finalMove);
+			maxDecision(game, 0, finalMove);
 		}
 		else {
-			minDecision(game,0, finalScore, finalMove);
+			minDecision(game, 0, finalMove);
 		}
 		return finalMove;
 	}
 	
-	private void maxDecision(GameI game, int depth, Integer finalScore, MoveI finalMove) {
+	private int maxDecision(GameI game, int depth, MoveI finalMove) {
 		if (depth >= maxDepth) {
-			finalScore = evaluator.evaluate(game);
+			return evaluator.evaluate(game);
 		}
 		else {
 			Vector<MoveI> legalMoves = game.getLegalMoves(COLOR.DARK);
 			if (legalMoves.size() == 0) {
-				finalScore = evaluator.evaluate(game);
+				return evaluator.evaluate(game);
 			}
 			else {
 				int maxScore = Integer.MIN_VALUE;
@@ -40,28 +39,27 @@ public class Minimax implements DecisionI {
 				for (int i = 0; i < legalMoves.size(); i++) {
 					GameI newGame = new Game(game);
 					newGame.applyMove(legalMoves.get(i), false);
-					Integer score = 0;
 					MoveI move = new Move(-1, -1);
-					minDecision(newGame, depth + 1, score, move); 
+					int score = minDecision(newGame, depth + 1, move);
 					if (score > maxScore) {
 						maxScore = score;
 						bestMove = i;
 					}
 				}
-				finalScore = maxScore;
 				finalMove.setMove(legalMoves.get(bestMove).getMoveI(), legalMoves.get(bestMove).getMoveJ());
+				return maxScore;
 			}
 		}
 	}
 	
-	private void minDecision(GameI game, int depth, Integer finalScore, MoveI finalMove) {
+	private int minDecision(GameI game, int depth, MoveI finalMove) {
 		if (depth >= maxDepth) {
-			finalScore = evaluator.evaluate(game);
+			return evaluator.evaluate(game);
 		}
 		else {
 			Vector<MoveI> legalMoves = game.getLegalMoves(COLOR.LIGHT);
 			if (legalMoves.size() == 0) {
-				finalScore = evaluator.evaluate(game);
+				return evaluator.evaluate(game);
 			}
 			else {
 				int minScore = Integer.MAX_VALUE;
@@ -69,16 +67,15 @@ public class Minimax implements DecisionI {
 				for (int i = 0; i < legalMoves.size(); i++) {
 					GameI newGame = new Game(game);
 					newGame.applyMove(legalMoves.get(i), false);
-					Integer score = 0;
 					MoveI move = new Move(-1, -1);
-					minDecision(newGame, depth + 1, score, move); 
+					int score = maxDecision(newGame, depth + 1, move);
 					if (score < minScore) {
 						minScore = score;
 						bestMove = i;
 					}
 				}
-				finalScore = minScore;
 				finalMove.setMove(legalMoves.get(bestMove).getMoveI(), legalMoves.get(bestMove).getMoveJ());
+				return minScore;
 			}
 		}
 	}

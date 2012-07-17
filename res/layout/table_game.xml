@@ -19,8 +19,8 @@
         android:horizontalSpacing="2dp"
         android:listSelector="@android:color/transparent"
         android:numColumns="auto_fit"
-        android:paddingLeft="2dp"
         android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
         android:paddingRight="2dp"
         android:stretchMode="none"
         android:verticalSpacing="2dp" >
@@ -29,13 +29,21 @@
     <LinearLayout
         android:id="@+id/layoutRight"
         android:layout_width="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="0dp"
         android:background="@color/grey"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/algorithmText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/black"
+            android:text="00" />
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -44,8 +52,8 @@
             <TableRow
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:layout_gravity="center_horizontal">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" >
 
                 <ImageView
                     android:id="@+id/imageDark"

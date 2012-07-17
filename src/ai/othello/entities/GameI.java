@@ -40,4 +40,6 @@ public interface GameI extends Runnable {
 	
 	public abstract int getMethod();
 	
+	public abstract void setMethod(int method);
+	
 }

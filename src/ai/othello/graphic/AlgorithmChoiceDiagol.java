@@ -1,10 +1,7 @@
 package ai.othello.graphic;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.widget.Toast;
 
 public class AlgorithmChoiceDiagol extends AlertDialog {
 

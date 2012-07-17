@@ -8,7 +8,7 @@ import ai.othello.entities.Move;
 import ai.othello.entities.MoveI;
 import ai.othello.entities.GameI.COLOR;
 
-public class AlphaBeta implements AlphaBetaI {
+public class AlphaBeta implements DecisionI {
 	
 	private int maxDepth = 4;
 	private EvaluatorI evaluator = new Evaluator();
@@ -16,9 +16,9 @@ public class AlphaBeta implements AlphaBetaI {
 	@Override
 	public MoveI getDecision(GameI game) {
 		MoveI finalMove = new Move(-1, -1);
-		Integer finalScore = new Integer(-1);
-		Integer alpha = new Integer(Integer.MIN_VALUE);
-		Integer beta = new Integer(Integer.MAX_VALUE);
+		Integer finalScore = -1;
+		Integer alpha = Integer.MIN_VALUE;
+		Integer beta = Integer.MAX_VALUE;
 		if (game.getCurrentPlayer().getColor() == Game.COLOR.DARK) {
 			maxDecision(game, 0, finalScore, finalMove, alpha, beta);
 		}
@@ -43,7 +43,7 @@ public class AlphaBeta implements AlphaBetaI {
 				for (int i = 0; i < legalMoves.size(); i++) {
 					GameI newGame = new Game(game);
 					newGame.applyMove(legalMoves.get(i), false);
-					Integer score = new Integer(0);
+					Integer score = 0;
 					MoveI move = new Move(-1, -1);
 					minDecision(newGame, depth + 1, score, move, alpha, beta);
 					if (score >= beta) {
@@ -78,7 +78,7 @@ public class AlphaBeta implements AlphaBetaI {
 				for (int i = 0; i < legalMoves.size(); i++) {
 					GameI newGame = new Game(game);
 					newGame.applyMove(legalMoves.get(i), false);
-					Integer score = new Integer(0);
+					Integer score = 0;
 					MoveI move = new Move(-1, -1);
 					minDecision(newGame, depth + 1, score, move, alpha, beta);
 					if (score <= alpha) {

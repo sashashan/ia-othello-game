@@ -24,6 +24,8 @@ public interface GameI extends Runnable {
 	
 	public abstract PlayerI getCurrentPlayer();
 	
+	public abstract void setUserMove(int i, int j);
+	
 	public abstract int getTotalDisksNum();
 	
 	public abstract int getCurrentDisksNum();
@@ -33,5 +35,9 @@ public interface GameI extends Runnable {
 	public abstract int getLightDisksNum();
 	
 	public abstract PlayActivity getGui();
+	
+	public abstract boolean getVs();
+	
+	public abstract int getMethod();
 	
 }

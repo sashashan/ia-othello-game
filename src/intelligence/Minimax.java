@@ -7,7 +7,7 @@ import ai.othello.entities.GameI.COLOR;
 import ai.othello.entities.Move;
 import ai.othello.entities.MoveI;
 
-public class Minimax implements MinimaxI {
+public class Minimax implements DecisionI {
 	
 	private int maxDepth = 4;
 	private EvaluatorI evaluator = new Evaluator();
@@ -15,7 +15,7 @@ public class Minimax implements MinimaxI {
 	@Override
 	public MoveI getDecision(GameI game) {
 		MoveI finalMove = new Move(-1, -1);
-		Integer finalScore = new Integer(0);
+		Integer finalScore = 0;
 		if (game.getCurrentPlayer().getColor() == Game.COLOR.DARK) {
 			maxDecision(game, 0, finalScore, finalMove);
 		}
@@ -40,7 +40,7 @@ public class Minimax implements MinimaxI {
 				for (int i = 0; i < legalMoves.size(); i++) {
 					GameI newGame = new Game(game);
 					newGame.applyMove(legalMoves.get(i), false);
-					Integer score = new Integer(0);
+					Integer score = 0;
 					MoveI move = new Move(-1, -1);
 					minDecision(newGame, depth + 1, score, move); 
 					if (score > maxScore) {
@@ -69,7 +69,7 @@ public class Minimax implements MinimaxI {
 				for (int i = 0; i < legalMoves.size(); i++) {
 					GameI newGame = new Game(game);
 					newGame.applyMove(legalMoves.get(i), false);
-					Integer score = new Integer(0);
+					Integer score = 0;
 					MoveI move = new Move(-1, -1);
 					minDecision(newGame, depth + 1, score, move); 
 					if (score < minScore) {

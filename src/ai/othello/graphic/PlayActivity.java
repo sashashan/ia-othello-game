@@ -1,4 +1,5 @@
 package ai.othello.graphic;
+
 import ai.othello.entities.Game;
 import ai.othello.entities.GameI;
 import ai.othello.entities.GameI.COLOR;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -26,7 +29,7 @@ public class PlayActivity extends Activity {
 	private ImageView darkImg;
 	private ImageView lightImg;
 	
-	private GameI game = new Game(8,this);
+	private GameI game = new Game(8, false, 0, this);
 
 	/** */
 	@Override
@@ -39,14 +42,14 @@ public class PlayActivity extends Activity {
 		Point pnt = new Point();
 		display.getSize(pnt); // restituisce la dimensione in pixel del display
 
-		Log.d("X", new Integer(pnt.x).toString()); // width = larghezza = x
-		Log.d("Y", new Integer(pnt.y).toString()); // height = altezza = y
+		Log.d("X", Integer.valueOf(pnt.x).toString()); // width = larghezza = x
+		Log.d("Y", Integer.valueOf(pnt.y).toString()); // height = altezza = y
 
 		int boardHeight = (pnt.y / 100 ) * 100; // spazio per la griglia
-		Log.d("BOARDHEIGHT", new Integer(boardHeight).toString());
+		Log.d("BOARDHEIGHT", Integer.valueOf(boardHeight).toString());
 
 		int boxSize = boardHeight / 8; // calcola il lato della casella della griglia
-		Log.d("LATO CASELLA", new Integer(boxSize).toString());
+		Log.d("LATO CASELLA", Integer.valueOf(boxSize).toString());
 
 		// CREA E SETTA LA GRIGLIA
 		GridView gridView = (GridView) findViewById(R.id.gridview);
@@ -69,6 +72,19 @@ public class PlayActivity extends Activity {
 		
 		darkImg = (ImageView) findViewById(R.id.imageDark); // img player dark
 		lightImg = (ImageView) findViewById(R.id.imageLight); // img player light
+		
+		gridView.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+				
+				synchronized (game) {
+					int i = position / game.getBoardDim();
+					int j = position % game.getBoardDim();
+					game.setUserMove(i, j);
+					game.notifyAll();
+				}
+			}
+		});
 		
 		Button bntExitGame = (Button)findViewById(R.id.bntExitGame); // bottone exit partita
 		bntExitGame.setOnClickListener(new View.OnClickListener() {
@@ -131,4 +147,6 @@ public class PlayActivity extends Activity {
 		});
 		
 	}
+	
+	
 }

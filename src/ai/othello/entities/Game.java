@@ -1,9 +1,8 @@
 package ai.othello.entities;
 
 import intelligence.AlphaBeta;
-import intelligence.AlphaBetaI;
+import intelligence.DecisionI;
 import intelligence.Minimax;
-import intelligence.MinimaxI;
 
 import java.util.Vector;
 
@@ -19,12 +18,17 @@ public class Game implements GameI {
 	private int darkDisksNum = 0;
 	private int lightDisksNum = 0;
 	private PlayerI currentPlayer = new Player(COLOR.DARK);
+	private boolean vs = false;
+	private int method = 0;
+	private MoveI userMove = new Move(-1, -1);
 	
 	private PlayActivity gui;
 	
-	public Game(int boardDim, PlayActivity gui) {
+	public Game(int boardDim, boolean vs, int method, PlayActivity gui) {
 		this.gui = gui;
 		this.boardDim = boardDim;
+		this.vs = vs;
+		this.method = method;
 	}
 	
 	public Game(GameI game) {
@@ -40,6 +44,8 @@ public class Game implements GameI {
 		darkDisksNum = game.getDarkDisksNum();
 		lightDisksNum = game.getLightDisksNum();
 		currentPlayer = game.getCurrentPlayer();
+		vs = game.getVs();
+		method = game.getMethod();
 		gui = game.getGui();
 	}
 	
@@ -77,28 +83,51 @@ public class Game implements GameI {
 	
 	@Override
 	public void play() {
-		//MinimaxI minimax = new Minimax();
-		AlphaBetaI ai = new AlphaBeta(); 
+		// creation of the ai
+		DecisionI ai;
+		switch (method) {
+		case 0:
+			ai = new Minimax();
+			break;
+		case 1:
+			ai = new AlphaBeta();
+			break;	
+		default:
+			ai = new Minimax();
+			break;
+		}
+		// game cicle
 		while (!endCondition()) {
-			MoveI move = ai.getDecision(this);
-			if (move.getMoveI() != -1 && move.getMoveJ() != -1) { // se non passa
-				applyMove(move, true);
+			
+			if (getLegalMoves(currentPlayer.getColor()).size() > 0) {
+				// user play
+				if (vs && currentPlayer.getColor() == COLOR.DARK) {
+					try {
+						do {
+							synchronized (this) {
+								wait();
+							}
+						} while ( ! testLegal(userMove.getMoveI(), userMove.getMoveJ(), currentPlayer.getColor()));
+						applyMove(userMove, true);
+					}
+					catch (InterruptedException e) {
+						System.out.println(e.getMessage());
+					}
+				}
+				// computer play
+				else {
+					MoveI move = ai.getDecision(this);
+					applyMove(move, true);
+				}
 			}
 			currentPlayer.switchColor();
 			gui.setPlayerTurn(currentPlayer.getColor());
-			
-//			try {
-//				Thread.sleep(1000);
-//			} catch (Exception e) {
-//				// TODO: handle exception
-//			}
 		}
 	}
 	
 	@Override
 	public boolean endCondition() {
-		if ( ( currentDisksNum >= totalDiskNum ) ||
-		     ( getLegalMoves(COLOR.DARK).size() == 0 && getLegalMoves(COLOR.LIGHT).size() == 0) ) {
+		if ( getLegalMoves(COLOR.DARK).size() == 0 && getLegalMoves(COLOR.LIGHT).size() == 0) {
 			return true;
 		}
 		return false;
@@ -259,6 +288,11 @@ public class Game implements GameI {
 	}
 	
 	@Override
+	public void setUserMove(int i, int j) {
+		userMove.setMove(i, j);
+	}
+	
+	@Override
 	public SquareI[][] getBoard() {
 		return board;
 	}
@@ -296,5 +330,15 @@ public class Game implements GameI {
 	@Override
 	public PlayActivity getGui() {
 		return gui;
+	}
+	
+	@Override
+	public boolean getVs() {
+		return vs;
+	}
+	
+	@Override
+	public int getMethod() {
+		return method;
 	}
 }

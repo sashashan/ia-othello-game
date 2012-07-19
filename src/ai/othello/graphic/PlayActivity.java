@@ -31,7 +31,7 @@ public class PlayActivity extends Activity {
 
 	private int gameType;
 
-	private GameI game = new Game(8, true, 0, this);
+	private GameI game = new Game(8, false, 0, this);
 
 	/** */
 	@Override
@@ -52,7 +52,7 @@ public class PlayActivity extends Activity {
 		Log.d("X", Integer.valueOf(pnt.x).toString()); // width = larghezza = x
 		Log.d("Y", Integer.valueOf(pnt.y).toString()); // height = altezza = y
 
-		int boardHeight = (pnt.y / 100 ) * 100; // spazio per la griglia
+		int boardHeight = (pnt.y / 100 ) * 90; // spazio per la griglia
 		Log.d("BOARDHEIGHT", Integer.valueOf(boardHeight).toString());
 
 		int boxSize = boardHeight / 8; // calcola il lato della casella della griglia
@@ -72,7 +72,7 @@ public class PlayActivity extends Activity {
 		Log.d("dim altezza layout", Integer.toString(boardHeight));
 		layoutRight.setMinimumHeight(pnt.y);
 		Log.d("dim larghezza layout", Integer.toString(pnt.x-boardHeight));
-		layoutRight.setMinimumWidth((pnt.x-boardHeight)-32);
+		layoutRight.setMinimumWidth((pnt.x-boardHeight)-42);
 
 		darkCounter = (TextView) findViewById(R.id.playerDarkCounter); // dark Counter
 		lightCounter = (TextView) findViewById(R.id.playerLightCounter); // light Counter
@@ -107,13 +107,6 @@ public class PlayActivity extends Activity {
 		// START GAME
 		new Thread(game).start(); // start del thread di gioco
 		game.setMethod(gameType);
-
-		TextView algorithm = (TextView) findViewById(R.id.algorithmText);
-		if (game.getMethod()==0) {
-			algorithm.setText("Algoritmo MIN-MAX");
-		} else {
-			algorithm.setText("Algoritmo ALPHA-BETA");
-		}
 	}
 
 	public void setPawn(final int x, final int y, final COLOR color) {

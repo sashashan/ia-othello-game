@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:paddingTop="60dp"
+    android:paddingLeft="100dp"
+    android:paddingRight="100dp"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
@@ -10,6 +13,8 @@
         android:gravity="center_horizontal"
         android:text="@string/title"
         android:textSize="25dip" 
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         android:layout_marginBottom="15dip"/>
 
     <Button

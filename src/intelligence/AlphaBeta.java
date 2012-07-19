@@ -10,7 +10,7 @@ import ai.othello.entities.GameI.COLOR;
 
 public class AlphaBeta implements DecisionI {
 	
-	private int maxDepth = 4;
+	private int maxDepth = 7;
 	private EvaluatorI evaluator = new Evaluator();
 	
 	@Override

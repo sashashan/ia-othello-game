@@ -31,6 +31,7 @@ public class OthelloActivity extends Activity {
 						Intent play = new Intent(OthelloActivity.this, PlayActivity.class);
 						play.putExtra("algorithm", which);
 						startActivity(play);
+						dialog.dismiss();
 						finish();
 					}
 				});

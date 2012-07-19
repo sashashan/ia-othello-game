@@ -12,6 +12,7 @@ public final class R {
     }
     public static final class color {
         public static final int black=0x7f040000;
+        public static final int blue=0x7f040008;
         public static final int dark_green=0x7f040005;
         public static final int grey=0x7f040006;
         public static final int light_green=0x7f040001;
@@ -29,24 +30,22 @@ public final class R {
         public static final int sfondo=0x7f020005;
     }
     public static final class id {
-        public static final int RelativeLayoutContent=0x7f060014;
-        public static final int algorithmText=0x7f060017;
-        public static final int bntExit=0x7f060013;
-        public static final int bntExitGame=0x7f060020;
-        public static final int bntInstruction=0x7f060012;
-        public static final int bntPlay=0x7f060011;
-        public static final int bntTornBack=0x7f060010;
-        public static final int gridview=0x7f060015;
-        public static final int imageDark=0x7f060019;
-        public static final int imageLight=0x7f06001a;
+        public static final int RelativeLayoutContent=0x7f060013;
+        public static final int bntExit=0x7f060012;
+        public static final int bntExitGame=0x7f06001e;
+        public static final int bntInstruction=0x7f060011;
+        public static final int bntPlay=0x7f060010;
+        public static final int gridview=0x7f060014;
+        public static final int imageDark=0x7f060017;
+        public static final int imageLight=0x7f060018;
         public static final int instructionTitle=0x7f060002;
-        public static final int layoutRight=0x7f060016;
-        public static final int linearLayout1=0x7f06001f;
+        public static final int layoutRight=0x7f060015;
+        public static final int linearLayout1=0x7f06001d;
         public static final int objectText=0x7f060004;
         public static final int objectTitle=0x7f060003;
         public static final int orizontalLayout=0x7f060001;
-        public static final int playerDarkCounter=0x7f06001c;
-        public static final int playerLightCounter=0x7f06001e;
+        public static final int playerDarkCounter=0x7f06001a;
+        public static final int playerLightCounter=0x7f06001c;
         public static final int rulesText_1=0x7f060006;
         public static final int rulesText_10=0x7f06000f;
         public static final int rulesText_2=0x7f060007;
@@ -59,9 +58,9 @@ public final class R {
         public static final int rulesText_9=0x7f06000e;
         public static final int rulesTitle=0x7f060005;
         public static final int scrollView1=0x7f060000;
-        public static final int tableRow1=0x7f06001b;
-        public static final int tableRow2=0x7f060018;
-        public static final int textView2=0x7f06001d;
+        public static final int tableRow1=0x7f060019;
+        public static final int tableRow2=0x7f060016;
+        public static final int textView2=0x7f06001b;
     }
     public static final class layout {
         public static final int instruction=0x7f030000;

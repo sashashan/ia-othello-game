@@ -125,12 +125,6 @@
                     android:layout_margin="5dp"
                     android:text="@string/rulesText_10" />
 
-                <Button
-                    android:id="@+id/bntTornBack"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="@string/tornBack" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -1,7 +1,9 @@
 package ai.othello.entities;
 
+// Rappresenta un giocatore. In particolare serve a indicare il giocatore corrente
 public class Player implements PlayerI {
-		
+	
+	// colore del giocatore
 	private Game.COLOR color;
 	
 	public Player(Game.COLOR color) {
@@ -18,6 +20,7 @@ public class Player implements PlayerI {
 		this.color = color;
 	}
 	
+	// restituisce il colore dell'avversario
 	@Override
 	public Game.COLOR getAdversaryColor() {
 		if (color == Game.COLOR.DARK) {
@@ -28,6 +31,8 @@ public class Player implements PlayerI {
 		}
 	}
 	
+	// inverte il colore. Utile per cambiare il giocatore corrente
+	// dopo una mossa
 	@Override
 	public void switchColor() {
 		if (color == Game.COLOR.DARK) {

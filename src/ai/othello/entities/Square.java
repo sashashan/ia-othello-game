@@ -1,7 +1,10 @@
 package ai.othello.entities;
 
+// Rappresenta una singola casella della scacchiera 
 public class Square implements SquareI {
 	
+	// il colore esprime se la casella è occupata da un disco chiaro
+	// oppure scuro. Se la casella è vuota il colore è NONE
 	private Game.COLOR color = Game.COLOR.NONE;
 	
 	public Square() {
@@ -22,6 +25,7 @@ public class Square implements SquareI {
 		return color;
 	}
 	
+	// inverte il colore del disco posizionato in essa
 	@Override
 	public void switchColor() {
 		if (color == Game.COLOR.DARK) {

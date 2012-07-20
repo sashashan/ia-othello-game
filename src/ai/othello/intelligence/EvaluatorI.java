@@ -1,4 +1,4 @@
-package intelligence;
+package ai.othello.intelligence;
 
 import ai.othello.entities.GameI;
 

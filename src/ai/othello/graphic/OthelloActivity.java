@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.Button;
 
 public class OthelloActivity extends Activity {
-	/** Called when the activity is first created. */
+
+	private int algorithm;
+	private int vs;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,20 +22,50 @@ public class OthelloActivity extends Activity {
 		Button bntPlay = (Button)findViewById(R.id.bntPlay);
 		bntPlay.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				
+
 				AlertDialog.Builder b = new AlertDialog.Builder(OthelloActivity.this);
-				b.setTitle("Choose Algorithm");
+				b.setTitle("Choice of algorithm");
 				b.setSingleChoiceItems(new String[]{
 						getString(R.string.minmaxText),
 						getString(R.string.alphabetaText)
-					}, -1, new OnClickListener() {
+				}, -1, new OnClickListener() {
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Intent play = new Intent(OthelloActivity.this, PlayActivity.class);
-						play.putExtra("algorithm", which);
-						startActivity(play);
-						dialog.dismiss();
-						finish();
+						algorithm = which;
+					}
+				});
+				b.setPositiveButton("Next", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						AlertDialog.Builder avv = new AlertDialog.Builder(OthelloActivity.this);
+						avv.setTitle("Game mode");
+						avv.setSingleChoiceItems(new String[]{
+								getString(R.string.device_device),
+								getString(R.string.player_device)
+						}, -1, new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								vs = which;
+							}
+						});
+						avv.setPositiveButton("Play", new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent play = new Intent(OthelloActivity.this, PlayActivity.class);
+								play.putExtra("vs", vs);
+								play.putExtra("algorithm", algorithm);
+								startActivity(play);
+								dialog.dismiss();
+								finish();
+							}
+						});
+						avv.setNegativeButton("Cancel", null);
+						avv.show();
 					}
 				});
 				b.setNegativeButton(R.string.cancel, null);

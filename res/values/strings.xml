@@ -4,11 +4,10 @@
     <string name="title">Othello</string>
     <string name="app_name">Othello</string>
     <string name="play">Play</string>
-    <string name="exitApp">Exit</string>
+    <string name="exit">Exit</string>
     <string name="instruction">Instruction</string>
     <string name="playerDarkText">Dark</string>
     <string name="playerLightText">Light</string>
-    <string name="exitGame">Exit</string>
     <string name="instructionTitle">GAME INSTRUCTION</string>
     <string name="objectTitle">OBJECT OF THE GAME</string>
     <string name="objectText">The object of the game is to have the majority of your color discs on the board at the end of the game.</string>
@@ -23,9 +22,10 @@
     <string name="rulesText_8">8. Once a disc is placed on a square, it can never be moved to another square later in the game.</string>
     <string name="rulesText_9">9. If a player runs out of discs, but still has an opportunity to outflank an opposing disc on his or her turn, the opponent must give the player a disc to use (this can happen as many times as the player needs and can use a disc). </string>
     <string name="rulesText_10">10. When it is no longer possible for either player to move, the game is over. Discs are counted and the player with the majority of his or her color discs on the board is the winner.</string>
-    <string name="tornBack">Torn Back</string>
     <string name="minmaxText">Min-Max Algorithm</string>
     <string name="alphabetaText">Alpha-Beta Algorithm</string>
     <string name="cancel">Cancel</string>
+    <string name="player_device">Player vs Device</string>
+    <string name="device_device">Device vs Device</string>
 
 </resources>

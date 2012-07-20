@@ -1,13 +1,8 @@
 <resources>
-
-    <color name="black">#000000</color>
     <color name="light_green">#80CC26</color>
-    <color name="red">#EE1D19</color>
-    <color name="white">#FFFFFF</color>
-    <color name="orange">#FF9333</color>
-    <color name="dark_green">#33773A</color>
-    <color name="grey">#9C6329</color>
+    <color name="brown">#9C6329</color>
     <color name="yellow">#F4C82D</color>
     <color name="blue">#1C2AC7</color>
+    <color name="black">#000000</color>
 
 </resources>

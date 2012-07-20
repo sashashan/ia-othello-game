@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:paddingTop="60dp"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
     android:paddingLeft="100dp"
     android:paddingRight="100dp"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:paddingTop="60dp" >
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dip"
         android:gravity="center_horizontal"
         android:text="@string/title"
-        android:textSize="25dip" 
         android:textColor="@color/blue"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dip"/>
+        android:textSize="25dip"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/bntPlay"
@@ -33,6 +33,6 @@
         android:id="@+id/bntExit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/exitApp" />
+        android:text="@string/exit" />
 
 </LinearLayout>

@@ -11,55 +11,52 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
-    private Context mContext;
-    private int width;
-    private int height;
-    
-    private Hashtable<Integer, COLOR> positions = new Hashtable<Integer, COLOR>();
+	private Context mContext;
+	private int width;
+	private int height;
 
-    public ImageAdapter(Context c, int imgWidth, int imgHeight) {
-        mContext = c;
-        width = imgWidth;
-        height = imgHeight;
-    }
+	private Hashtable<Integer, COLOR> positions = new Hashtable<Integer, COLOR>();
 
-    public int getCount() {
-        return 8*8;
-    }
+	public ImageAdapter(Context c, int imgWidth, int imgHeight) {
+		mContext = c;
+		width = imgWidth;
+		height = imgHeight;
+	}
 
-    public COLOR getItem(int position) {
-        if (positions.containsKey(position)) {
-        	return positions.get(position);
-        }
-        return null;
-    }
+	public int getCount() {
+		return 8*8;
+	}
 
-    public long getItemId(int position) {
-        return 0;
-    }
+	public COLOR getItem(int position) {
+		if (positions.containsKey(position)) {
+			return positions.get(position);
+		}
+		return null;
+	}
 
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-    	ImageView imageView;
-    	if (convertView == null) {  // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(height, width));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setBackgroundResource(R.color.light_green);
-        } else {
-            imageView = (ImageView) convertView;
-        }
+	public long getItemId(int position) {
+		return 0;
+	}
 
-    	if (getItem(position) != null) {
-    		imageView.setImageResource((getItem(position) == COLOR.LIGHT) ? R.drawable.light : R.drawable.dark);
-    	}
+	// create a new ImageView for each item referenced by the Adapter
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ImageView imageView;
+		if (convertView == null) {  // if it's not recycled, initialize some attributes
+			imageView = new ImageView(mContext);
+			imageView.setLayoutParams(new GridView.LayoutParams(height, width));
+			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+			imageView.setBackgroundResource(R.color.light_green);
+		} else {
+			imageView = (ImageView) convertView;
+		}
+		if (getItem(position) != null) {
+			imageView.setImageResource((getItem(position) == COLOR.LIGHT) ? R.drawable.light : R.drawable.dark);
+		}
+		return imageView;
+	}
 
-        return imageView;
-    }
-    
-    public void setPawn(int position, COLOR color) {
-    	positions.put(position, color);
-    	notifyDataSetChanged();
-    }
-    
+	public void setPawn(int position, COLOR color) {
+		positions.put(position, color);
+		notifyDataSetChanged();
+	}
 }

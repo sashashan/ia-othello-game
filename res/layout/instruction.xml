@@ -21,28 +21,34 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/objectTitle"
+            android:id="@+id/introductionText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="@string/objectTitle"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold" />
+            android:text="@string/introductionText1" />
 
         <TextView
-            android:id="@+id/objectText"
+            android:id="@+id/introductionText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="@string/objectText" />
+            android:text="@string/introductionText2" />
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="117dp"
+            android:layout_height="130dp"
+            android:src="@drawable/iniziale" 
+            android:layout_gravity="center_horizontal"
+            android:padding="5dp"/>
+        
         <TextView
-            android:id="@+id/rulesTitle"
+            android:id="@+id/howToPlayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="15dp"
-            android:text="@string/rulesTitle"
+            android:text="@string/howToPlayTitle"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold" />
 
@@ -107,14 +113,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:paddingTop="8dp"
             android:text="@string/rulesText_9" />
 
-        <TextView
-            android:id="@+id/rulesText_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/rulesText_10" />
     </LinearLayout>
 
 </ScrollView>

@@ -9,23 +9,23 @@
     <string name="playerDarkText">Dark</string>
     <string name="playerLightText">Light</string>
     <string name="instructionTitle">GAME INSTRUCTION</string>
-    <string name="objectTitle">OBJECT OF THE GAME</string>
-    <string name="objectText">The object of the game is to have the majority of your color discs on the board at the end of the game.</string>
-    <string name="rulesTitle">RULES</string>
-    <string name="rulesText_1">1. Black always move first.</string>
-    <string name="rulesText_2">2. If on your turn you cannot outflank and flip at least one opposing disc, your turn is forfeite and your opponent moves again. However, if a move is available to you, you may not forfeit your turn.</string>
-    <string name="rulesText_3">3. A disc may outflank any number of discs in one or more rows in any number of directions at the same time (horizontally, vertically, or diagonally).  A row is defined as one or more discs in a continuous straight line. </string>
-    <string name="rulesText_4">4. You may not skip over your own color disc to outflank an opposing disc.</string>
-    <string name="rulesText_5">5. Disc(s) may only be outflanked as a direct result of a move and must fall in the direct line of the disc placed down.</string>
-    <string name="rulesText_6">6. All discs outflanked in any one move must be flipped, even if it is to the player advantage not to flip them all.</string>
-    <string name="rulesText_7">7. A player who flips a disc which should not have been turned may correct the mistake as long as the opponent has not made a subsequent move. If the opponent has already moved, it is too late for change and the disc(s) remain as is.</string>
-    <string name="rulesText_8">8. Once a disc is placed on a square, it can never be moved to another square later in the game.</string>
-    <string name="rulesText_9">9. If a player runs out of discs, but still has an opportunity to outflank an opposing disc on his or her turn, the opponent must give the player a disc to use (this can happen as many times as the player needs and can use a disc). </string>
-    <string name="rulesText_10">10. When it is no longer possible for either player to move, the game is over. Discs are counted and the player with the majority of his or her color discs on the board is the winner.</string>
+    <string name="introductionText1">This game has two players competing as elements, a board (called Othelleria) of size 8x8 pieces of uniform color and shape of discs with the two faces of opposite colors, one dark and one light. For each player is assigned one of these two colors.
+Players play in turn and every single move consists of placing a disc of his color, and has as effect the reversal of one or more pieces of the opponent, so became of the color of the current player. The goal is to have at the end of the game, the majority of pawns on the chessboard of your color.</string>
+    <string name="introductionText2">The initial configuration provides for the positioning of four disks, two for color at the center of the board, so as to form an X as reported in the following image.</string><string name="howToPlayTitle">HOW TO PLAY</string>
+    <string name="rulesText_1">1. The dark player moves first.</string>
+    <string name="rulesText_2">2. Each player places one disc per turn.</string>
+    <string name="rulesText_3">3. A disc can only be placed in an empty box.</string>
+    <string name="rulesText_4">4. Once a disk is placed can not be moved or removed, but only reversed.</string>
+    <string name="rulesText_5">5. The positioning of a disc of a certain color has the effect of reversing all the disks that form along any of the 8 verse, a continuous path of the opposite color that starts from a position next to that of the disc placed and which is directly below by a disc of the same color.</string>
+    <string name="rulesText_6">6. Not all moves are allowed, but only the legal ones. A move is legal only if it causes the reversal of minimum one disc of the opponent.</string>
+    <string name="rulesText_7">7. If during a player turn is unable to make any legal move, pass the turn without making any moves. If instead it is practicable at least one move, the player is obliged to do it.</string>
+    <string name="rulesText_8">8. Discs can be reversed only if accompanied by disk placed during the current move.</string>
+    <string name="rulesText_9">The game ends when none of the players can do any legal move. The counting of the discs on the board determine the player to win.</string>
     <string name="minmaxText">Min-Max Algorithm</string>
     <string name="alphabetaText">Alpha-Beta Algorithm</string>
     <string name="cancel">Cancel</string>
     <string name="player_device">Player vs Device</string>
     <string name="device_device">Device vs Device</string>
+    
 
 </resources>

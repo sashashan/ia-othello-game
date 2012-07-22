@@ -30,7 +30,6 @@ public class PlayActivity extends Activity {
 
 	private int gameType;
 	private int vs;
-	private int level;
 
 	private GameI game = new Game(8, false, 0, this);
 
@@ -46,9 +45,6 @@ public class PlayActivity extends Activity {
 		vs = getIntent().getIntExtra("vs", 0);
 		// vs == 0 --> device vs device
 		// vs == 1 --> player vs device
-		
-		level = getIntent().getIntExtra("level", 0);
-		// level assume valori da 0 a 9 che corrispondo ai livelli da 1 a 10
 
 		// PRENDE DIMENSIONI DISPLAY PER ADATTARE IL CONTENUTO
 		Display display = getWindowManager().getDefaultDisplay();
@@ -111,7 +107,6 @@ public class PlayActivity extends Activity {
 		else {
 			game.setVs(true);
 		}
-		game.setDeep(level+1); // set livello di gioco
 	}
 
 	public void setPawn(final int x, final int y, final COLOR color) {

@@ -65,7 +65,10 @@ public final class R {
         public static final int alphabetaText=0x7f050015;
         public static final int app_name=0x7f050001;
         public static final int cancel=0x7f050016;
+        public static final int cinque=0x7f05001d;
         public static final int device_device=0x7f050018;
+        public static final int dieci=0x7f050022;
+        public static final int due=0x7f05001a;
         public static final int exit=0x7f050003;
         public static final int howToPlayTitle=0x7f05000a;
         public static final int instruction=0x7f050004;
@@ -73,10 +76,13 @@ public final class R {
         public static final int introductionText1=0x7f050008;
         public static final int introductionText2=0x7f050009;
         public static final int minmaxText=0x7f050014;
+        public static final int nove=0x7f050021;
+        public static final int otto=0x7f050020;
         public static final int play=0x7f050002;
         public static final int playerDarkText=0x7f050005;
         public static final int playerLightText=0x7f050006;
         public static final int player_device=0x7f050017;
+        public static final int quattro=0x7f05001c;
         public static final int rulesText_1=0x7f05000b;
         public static final int rulesText_2=0x7f05000c;
         public static final int rulesText_3=0x7f05000d;
@@ -86,6 +92,10 @@ public final class R {
         public static final int rulesText_7=0x7f050011;
         public static final int rulesText_8=0x7f050012;
         public static final int rulesText_9=0x7f050013;
+        public static final int sei=0x7f05001e;
+        public static final int sette=0x7f05001f;
         public static final int title=0x7f050000;
+        public static final int tre=0x7f05001b;
+        public static final int uno=0x7f050019;
     }
 }

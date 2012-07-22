@@ -26,6 +26,16 @@ Players play in turn and every single move consists of placing a disc of his col
     <string name="cancel">Cancel</string>
     <string name="player_device">Player vs Device</string>
     <string name="device_device">Device vs Device</string>
+    <string name="uno">1</string>
+    <string name="due">2</string>
+    <string name="tre">3</string>
+    <string name="quattro">4</string>
+    <string name="cinque">5</string>
+    <string name="sei">6</string>
+    <string name="sette">7</string>
+    <string name="otto">8</string>
+    <string name="nove">9</string>
+    <string name="dieci">10</string>
     
 
 </resources>

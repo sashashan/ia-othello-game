@@ -16,7 +16,8 @@ public class AlphaBeta implements DecisionI {
 
 	// sceglie la mossa da effettuare e la restituisce
 	@Override
-	public MoveI getDecision(GameI game) {
+	public MoveI getDecision(GameI game, int deep) {
+		maxDepth = deep;
 		// inizializza la mossa con un valore nullo
 		MoveI finalMove = new Move(-1, -1);
 		// inizializza i valori alpha e beta

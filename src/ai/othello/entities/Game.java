@@ -23,6 +23,7 @@ public class Game implements GameI {
 	                            // oppure persona contro computer (true)
 	private int method = 0; // algoritmo di ricerca: 0 per minimax e 1 per alpha-beta pruning
 	private MoveI userMove = new Move(-1, -1); // mossa corrente
+	private int deep = 1;
 
 	private PlayActivity gui; // riferimento alla grafica
 
@@ -51,6 +52,7 @@ public class Game implements GameI {
 		currentPlayer = game.getCurrentPlayer();
 		vs = game.getVs();
 		method = game.getMethod();
+		deep = game.getDeep();
 		gui = game.getGui();
 	}
 
@@ -135,7 +137,7 @@ public class Game implements GameI {
 				else {
 					// si delega all'agente la scelta della mossa
 					// che poi viene applicata
-					MoveI move = ai.getDecision(this);
+					MoveI move = ai.getDecision(this, deep);
 					applyMove(move, true);
 				}
 			}
@@ -412,6 +414,16 @@ public class Game implements GameI {
 	@Override
 	public PlayActivity getGui() {
 		return gui;
+	}
+	
+	@Override
+	public int getDeep() {
+		return deep;
+	}
+	
+	@Override
+	public void setDeep(int deep) {
+		this.deep = deep;	
 	}
 
 }

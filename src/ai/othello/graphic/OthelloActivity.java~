@@ -13,7 +13,6 @@ public class OthelloActivity extends Activity {
 
 	private int algorithm;
 	private int vs;
-	private int level;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,64 +40,32 @@ public class OthelloActivity extends Activity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 
-						AlertDialog.Builder lev = new AlertDialog.Builder(OthelloActivity.this);
-						lev.setTitle("Level");
-						lev.setSingleChoiceItems(new String[]{
-								getString(R.string.uno),
-								getString(R.string.due),
-								getString(R.string.tre),
-								getString(R.string.quattro),
-								getString(R.string.cinque),
-								getString(R.string.sei),
-								getString(R.string.sette),
-								getString(R.string.otto),
-								getString(R.string.nove),
-								getString(R.string.dieci),
+						AlertDialog.Builder avv = new AlertDialog.Builder(OthelloActivity.this);
+						avv.setTitle("Game mode");
+						avv.setSingleChoiceItems(new String[]{
+								getString(R.string.device_device),
+								getString(R.string.player_device)
 						}, -1, new OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
-								level = which;
+								vs = which;
 							}
-						}
-								);
-						lev.setPositiveButton("Next", new DialogInterface.OnClickListener() {
+						});
+						avv.setPositiveButton("Play", new DialogInterface.OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
-
-								AlertDialog.Builder avv = new AlertDialog.Builder(OthelloActivity.this);
-								avv.setTitle("Game mode");
-								avv.setSingleChoiceItems(new String[]{
-										getString(R.string.device_device),
-										getString(R.string.player_device)
-								}, -1, new OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										vs = which;
-									}
-								});
-								avv.setPositiveButton("Play", new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										Intent play = new Intent(OthelloActivity.this, PlayActivity.class);
-										play.putExtra("vs", vs);
-										play.putExtra("algorithm", algorithm);
-										play.putExtra("level", level);
-										startActivity(play);
-										dialog.dismiss();
-										finish();
-									}
-								});
-								avv.setNegativeButton("Cancel", null);
-								avv.show();
+								Intent play = new Intent(OthelloActivity.this, PlayActivity.class);
+								play.putExtra("vs", vs);
+								play.putExtra("algorithm", algorithm);
+								startActivity(play);
+								dialog.dismiss();
+								finish();
 							}
-
 						});
-						lev.setNegativeButton("Cancel", null);
-						lev.show();
+						avv.setNegativeButton("Cancel", null);
+						avv.show();
 					}
 				});
 				b.setNegativeButton(R.string.cancel, null);

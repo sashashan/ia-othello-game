@@ -6,5 +6,5 @@ import ai.othello.entities.MoveI;
 
 public interface DecisionI {
 
-	public abstract MoveI getDecision(GameI game);
+	public abstract MoveI getDecision(GameI game, int deep);
 }

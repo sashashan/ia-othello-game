@@ -44,4 +44,8 @@ public interface GameI extends Runnable {
 	
 	public abstract void setMethod(int method);
 	
+	public abstract int getDeep();
+	
+	public abstract void setDeep(int deep);
+	
 }
